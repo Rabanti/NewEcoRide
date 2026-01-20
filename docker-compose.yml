@@ -1,0 +1,10 @@
+
+services:
+  node.js:
+    image: node:lts-alpine3.23
+    container_name: ecoride-node
+    ports:
+      - 8082:80
+    volumes:
+      - ./Ecoride:/usr/src/app
+
