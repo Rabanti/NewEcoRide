@@ -1,10 +1,25 @@
-
 services:
-  node.js:
-    image: node:lts-alpine3.23
-    container_name: ecoride-node
+  database:
+    image: mysql:5.6
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: raban12_
+      MYSQL_DATABASE: ecoride
+      MYSQL_USER: Rabanti
+      MYSQL_PASSWORD: raban12_
     ports:
-      - 8082:80
+      - 3307:3306
     volumes:
-      - ./Ecoride:/usr/src/app
+      - db_data:/var/lib/mysql
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./adminer:/var/www/html
+    depends_on:
+      - database
 
