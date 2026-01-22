@@ -1,25 +1,35 @@
+version: "3.8"
+
 services:
   database:
-    image: mysql:5.6
+    image: mysql:8.0
+    container_name: mysql_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: raban12_
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ecoride
-      MYSQL_USER: Rabanti
-      MYSQL_PASSWORD: raban12_
+      MYSQL_USER: ecoride
+      MYSQL_PASSWORD: ecoride
     ports:
-      - 3307:3306
+      - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql
-
+      - mysql_data:/var/lib/mysql
 
   adminer:
     image: adminer
+    container_name: adminer
     restart: always
     ports:
-      - 8080:8080
-    volumes:
-      - ./adminer:/var/www/html
+      - "8080:8080"
     depends_on:
       - database
+
+volumes:
+  mysql_data:
+
+
+
+
+
+
 
